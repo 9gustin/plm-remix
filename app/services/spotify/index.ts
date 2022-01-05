@@ -1,17 +1,18 @@
 import { SPOTIFY_API_BASE } from '~/config/spotify'
-import { getCredentials } from '~/hooks/useSession/constants'
+import { getSession, KEY } from '~/sessions/user';
 
 export function requestBuilder(path: string) {
-	return async (token?: string) => {
-		const credentials = getCredentials()
-		const tk = token || credentials?.access_token
-		if (!tk){
+	return async (cookies: string) => {
+		const session = await getSession(cookies);
+		const token = session.get(KEY)
+
+		if (!token){
 			return null
 		}
 
 		const response = await fetch(`${SPOTIFY_API_BASE}/${path}`, {
 			headers: {
-				'Authorization': `Bearer ${tk}`
+				'Authorization': `Bearer ${token}`
 			}
 		})
 		const data = await response.json()
