@@ -1,18 +1,18 @@
 // app/sessions.js
 import { createCookieSessionStorage } from "remix";
+import { cookieExpirationTime, MAX_AGE } from "./constants";
 
 const { getSession, commitSession, destroySession } =
   createCookieSessionStorage({
     cookie: {
       name: "__session",
 
-      // all of these are optional
-      expires: new Date(Date.now() + 60),
+      expires: cookieExpirationTime(),
+      maxAge: MAX_AGE,
       httpOnly: true,
-      maxAge: 60,
       path: "/",
       sameSite: "lax",
-      secrets: ["s3cret1"],
+      secrets: [process.env.SECRET!],
       secure: true
     }
   });

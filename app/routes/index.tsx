@@ -18,7 +18,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
 	const user = await me(cookies);
-
 	return {user};
 }
 
