@@ -7,7 +7,7 @@ import {
 
 import { getSession, KEY } from '../sessions/user'
 import { paths } from '~/config/paths'
-import { me } from '~/services/spotify/user';
+import { current, me, myTracks, playedHistory } from '~/services/spotify/user';
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const cookies = request.headers.get("Cookie")
@@ -18,11 +18,17 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
 	const user = await me(cookies);
-	return {user};
+	const tracks = await myTracks(cookies);
+	const actual = await current(cookies);
+	const history = await playedHistory(cookies);
+
+	console.log(JSON.stringify(actual));
+
+	return {user, tracks, history, actual};
 }
 
 export default function Home() {
-	const {user} = useLoaderData()
+	const {user, actual} = useLoaderData()
 	return (
 		<Form method="post">
 			<h1>Welcome to PLM</h1>

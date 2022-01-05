@@ -15,6 +15,7 @@ export function requestBuilder(path: string) {
 				'Authorization': `Bearer ${token}`
 			}
 		})
+		console.log(response)
 		const data = await response.json()
 		return data
 	}

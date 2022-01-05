@@ -26,6 +26,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 	if (code) {
 		const credentials = await getToken(code)
+		console.log(credentials)
 
 		if (credentials.access_token) {
 			session.set(KEY, credentials.access_token);

@@ -1,6 +1,6 @@
 import querystring from 'query-string'
 
-const SPOTIFY_LOGIN_SCOPES = 'user-read-private user-read-email'
+const SPOTIFY_LOGIN_SCOPES = 'user-read-private user-read-email user-top-read user-read-recently-played user-read-currently-playing'
 
 const SPOTIFY_LOGIN_CONFIG = {
   response_type: 'code',
