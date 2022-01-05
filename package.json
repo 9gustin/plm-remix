@@ -6,6 +6,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "node -r dotenv/config node_modules/.bin/remix dev",
+    "dev-win": "node -r dotenv/config ./node_modules/@remix-run/dev/cli.js",
     "postinstall": "remix setup node",
     "lint": "eslint --ext .js,.ts,.tsx app",
     "lint-fix": "eslint --ext .js,.ts,.tsx app --fix"
