@@ -5,10 +5,18 @@ import {
 	redirect,
 } from 'remix'
 
-import { SPOTIFY_LOGIN_URL } from '../config/spotify'
+import { SPOTIFY_LOGIN_URL } from '../../config/spotify'
 import { getToken } from '~/services/spotify/token'
-import { getSession, commitSession, KEY } from '../sessions/user'
+import { getSession, commitSession, KEY } from '../../sessions/user'
 import { paths } from '~/config/paths'
+import Button from '~/components/Button'
+import Brand from '~/components/Brand'
+
+import Layout, {links as layoutLinks } from '~/components/Layout'
+
+export const links = () => [
+	...layoutLinks()
+];
 
 export const action: ActionFunction = () => redirect(SPOTIFY_LOGIN_URL)
 
@@ -44,9 +52,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Login() {
 	return (
 		<Form method="post">
-			<h1>Welcome to PLM</h1>
-			<button type="submit">Login with Spotify</button>
-			<p>Maded by 9gu :P</p>
+			<Layout action="Login with Spotify">
+				<p>
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed quaerat modi minus, nisi rem, hic tempora sunt accusantium repellat accusamus quasi cumque. Ducimus, eos cum. Accusantium modi eum ratione deserunt.
+				</p>
+			</Layout>
 		</Form>
 	)
 }

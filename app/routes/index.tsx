@@ -9,6 +9,13 @@ import { getSession, KEY } from '../sessions/user'
 import { paths } from '~/config/paths'
 import { current, me, myTracks, playedHistory } from '~/services/spotify/user';
 
+import Layout, {links as layoutLinks } from '~/components/Layout'
+
+export const links = () => [
+	...layoutLinks()
+];
+
+
 export const loader: LoaderFunction = async ({ request }) => {
 	const cookies = request.headers.get("Cookie")
 	const session = await getSession(cookies)
@@ -28,12 +35,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Home() {
-	const {user, actual} = useLoaderData()
+	const {user} = useLoaderData()
 	return (
-		<Form method="post">
-			<h1>Welcome to PLM</h1>
-			Nice! you're in {user.display_name} ;)
-			<p>Maded by 9gu :P</p>
-		</Form>
+		<Layout action="Sorprendeme">
+		Nice! you're in {user.display_name} ;)
+	</Layout>
 	)
 }

@@ -1,0 +1,23 @@
+.container {
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.container > header {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.container > button {
+  margin: 0 auto 20px;
+  width: 90%;
+}
