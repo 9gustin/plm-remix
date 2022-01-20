@@ -9,10 +9,9 @@ import { SPOTIFY_LOGIN_URL } from '../../config/spotify'
 import { getToken } from '~/services/spotify/token'
 import { getSession, commitSession, KEY } from '../../sessions/user'
 import { paths } from '~/config/paths'
-import Button from '~/components/Button'
-import Brand from '~/components/Brand'
 
 import Layout, {links as layoutLinks } from '~/components/Layout'
+import { APP_DATA } from '~/config/appData'
 
 export const links = () => [
 	...layoutLinks()
@@ -52,10 +51,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Login() {
 	return (
 		<Form method="post">
-			<Layout action="Login with Spotify">
-				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed quaerat modi minus, nisi rem, hic tempora sunt accusantium repellat accusamus quasi cumque. Ducimus, eos cum. Accusantium modi eum ratione deserunt.
-				</p>
+			<Layout action={{name: 'Ingresar con Spotify'}}>
+				<div>
+					<p>
+						{APP_DATA.description}
+					</p>
+					<a href="/privacy">{APP_DATA.privacyTitle}</a>
+				</div>
 			</Layout>
 		</Form>
 	)

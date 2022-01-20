@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
-import Brand from "../Brand";
+import { useNavigate } from "remix";
+import { APP_DATA } from "~/config/appData";
 import Button from "../Button";
 
 import styles from "./styles.css";
@@ -12,18 +13,28 @@ export const links = () => [
 ];
 
 type Props = PropsWithChildren<{
-  action?: string;
+  action?: {
+    name: string;
+    to?: string;
+  };
 }>;
 
 function Layout({ action, children }: Props) {
+  const navigate = useNavigate();
+
+  const btnProps = action?.to ? {
+    handleClick: () => navigate(action.to!),
+    type: 'button'
+  }: {type: 'submit'}
+
   return (
     <div className="container">
       <header>
-        <Brand />
+        {APP_DATA.brand}
       </header>
       <main className="content">
         {children}
-        {action && <Button type="submit">{action}</Button>}
+        {action && <Button {...(btnProps as any)}>{action.name}</Button>}
       </main>
     </div>
   );
