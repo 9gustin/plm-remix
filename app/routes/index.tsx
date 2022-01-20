@@ -34,17 +34,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   const history = await playedHistory(cookies);
 
   return {user, tracks, history, actual, data: []};
-  // return { data: [] };
 };
 
 export default function Home() {
   const { user, tracks, history, actual, data } = useLoaderData();
   const actionData = useActionData();
-
-  console.log("actual", JSON.stringify(actual));
-  console.log("tracks", JSON.stringify(tracks));
-  console.log("user", JSON.stringify(user));
-  console.log("history", JSON.stringify(history));
 
   return (
     <Form>
