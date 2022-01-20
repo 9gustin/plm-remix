@@ -21,27 +21,30 @@ export const action: ActionFunction = async () => {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  // const cookies = request.headers.get("Cookie")
-  // const session = await getSession(cookies)
+  const cookies = request.headers.get("Cookie")
+  const session = await getSession(cookies)
 
-  // if (!cookies || !session.has(KEY)) {
-  //   return redirect(paths.login);
-  // }
+  if (!cookies || !session.has(KEY)) {
+    return redirect(paths.login);
+  }
 
-  // const user = await me(cookies);
-  // const tracks = await myTracks(cookies);
-  // const actual = await current(cookies);
-  // const history = await playedHistory(cookies);
+  const user = await me(cookies);
+  const tracks = await myTracks(cookies);
+  const actual = await current(cookies);
+  const history = await playedHistory(cookies);
 
-  // console.log(JSON.stringify(actual));
-
-  // return {user, tracks, history, actual};
-  return { data: [] };
+  return {user, tracks, history, actual, data: []};
+  // return { data: [] };
 };
 
 export default function Home() {
-  const { data } = useLoaderData();
+  const { user, tracks, history, actual, data } = useLoaderData();
   const actionData = useActionData();
+
+  console.log("actual", JSON.stringify(actual));
+  console.log("tracks", JSON.stringify(tracks));
+  console.log("user", JSON.stringify(user));
+  console.log("history", JSON.stringify(history));
 
   return (
     <Form>
